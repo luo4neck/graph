@@ -1,11 +1,7 @@
 graph: graph.c
 	gcc -Wall graph.c -o graph
 
-# graph.o: graph.c 
-#	gcc -Wall -c graph.c 
-
-t: graph
-#./graph test.dat
+test: graph
 	./graph read.dat
 
 clean:
