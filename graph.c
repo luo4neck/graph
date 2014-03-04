@@ -36,6 +36,18 @@ if(w>=1)
 free(wide);
 }
 
+void Disprint(int *dis, int Sub)
+{
+printf("Number of connected sub-graphs: %d\n", Sub);
+printf("Distance | Number of node-pairs\n");
+int i;
+for(i=0; i<6; i++)
+    {
+    if(dis[i] > 0)
+    printf("%d          %d \n" ,i+1, dis[i]/2); 
+    }
+}
+
 void free_graph(int **p, int vecnum)
 {
 int i;
@@ -56,7 +68,7 @@ if(argc>2)
 
 FILE *fp;
 char c;
-int i=0, k=0, j=0, vecnum = 0, Sub=0;
+int i=0, k=0, j=0, vecnum = 0;
 
 if((fp = fopen(argv[1], "rb")) == NULL)
     {
@@ -109,23 +121,26 @@ free(fp);
 
 /*============ begin search how many sub-graphs there is =============*/
 
-int distance;
+int distance, Sub=1;
 for(k=0; k<vecnum; k++) //loop for 7 nodes
     {
     printf("\nin loop %d !!!!!!!!!\n",k);
     for(i=0; i<vecnum; i++)
         { visited[i] = FALSE; }
     visited[k] = TRUE;
-    distance = 1;
+    distance = 0;
     Wides(p, visited, dis, k, distance, vecnum);
+    
+    Disprint(dis, Sub);
+/*    for(i=0; i<vecnum; i++)
+        {}*/
     }
-
 /*============ data have stored in **p graph part begin here =========*/
 
 
-    printf("here well why there is a segmentation fault\n");
+//    printf("here well why there is a segmentation fault\n");
 free_graph(p, vecnum);
 free(visited);
-//system("rm graph.o"); 
+free(dis);
 return 0;
 }
