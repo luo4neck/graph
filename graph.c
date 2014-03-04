@@ -156,9 +156,6 @@ while(Sum(sub) < vecnum)
             sub[i] = TRUE;
         }
 
-    //printf("%d, \n", Sum(visited) );
-    //printf("%d, \n", Sum(sub) );
-    
     if(Sum(sub) < vecnum)// if not all nodes are visited.. this is a sub-graph.. visit all the nodes inside the sub-graph..
         {
         for(i=0; i<vecnum; i++)
