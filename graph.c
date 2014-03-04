@@ -4,7 +4,7 @@
 #define FALSE 0
 
 void Wides(int **p, int *visited, int *dis, int k, int distance, int vecnum)
-{
+{//recursive function to traverse the graph..
 int j=1, w=0, *wide;
 wide = (int *)malloc(sizeof(int) * (vecnum));
 
@@ -16,17 +16,15 @@ while(p[k][j] >= 0)
         visited[ p[k][j] ] = TRUE;
         printf("node %d visited\n", p[k][j]);
         dis[distance]++;
-//        printf("%d %d %d here?\n",w,k,j);
-  //      printf("%d \n",wide[w]);
-    //    printf("%d %d %d here?\n",w,k,j);
+//printf("%d %d %d here?\n",w,k,j);
         wide[w] = p[k][j];
-    //    printf("%d %d %d here?\n",w,k,j);
+ //   printf("%d %d %d here?\n",w,k,j);
         w++;
         }
     j++;
     }
 
-if(w>1)
+if(w>=1)
     {
     int i;
     for(i=0; i<w; i++)
@@ -125,8 +123,9 @@ for(k=0; k<vecnum; k++) //loop for 7 nodes
 /*============ data have stored in **p graph part begin here =========*/
 
 
+    printf("here well why there is a segmentation fault\n");
 free_graph(p, vecnum);
 free(visited);
-system("rm graph.o"); 
+//system("rm graph.o"); 
 return 0;
 }

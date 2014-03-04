@@ -1,4 +1,4 @@
-graph: graph.o
+graph: graph.c
 	gcc -Wall graph.c -o graph
 
 # graph.o: graph.c 
