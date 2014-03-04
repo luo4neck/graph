@@ -1,12 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define INF 5000
 #define TRUE 1
 #define FALSE 0
 
-void Wides(int **p, int *visited, int *dis, int k, int distance)
+void Wides(int **p, int *visited, int *dis, int k, int distance, int vecnum)
 {
 int j=1, w=0, *wide;
+wide = (int *)malloc(sizeof(int) * (vecnum));
+
 while(p[k][j] >= 0)
     {
     //if( visited[ p[k][j] ] == FALSE && p[k][j]>k )
@@ -15,7 +16,9 @@ while(p[k][j] >= 0)
         visited[ p[k][j] ] = TRUE;
         printf("node %d visited\n", p[k][j]);
         dis[distance]++;
-  //      printf("%d %d %d here?\n",w,k,j);
+//        printf("%d %d %d here?\n",w,k,j);
+  //      printf("%d \n",wide[w]);
+    //    printf("%d %d %d here?\n",w,k,j);
         wide[w] = p[k][j];
     //    printf("%d %d %d here?\n",w,k,j);
         w++;
@@ -29,9 +32,10 @@ if(w>1)
     for(i=0; i<w; i++)
         {
         printf("into node %d\n", wide[i]);
-        Wides(p, visited, dis, wide[i], distance+1);
+        Wides(p, visited, dis, wide[i], distance+1, vecnum);
         }
     }
+free(wide);
 }
 
 void free_graph(int **p, int vecnum)
@@ -110,12 +114,12 @@ free(fp);
 int distance;
 for(k=0; k<vecnum; k++) //loop for 7 nodes
     {
-    printf("in loop %d\n",k);
+    printf("\nin loop %d !!!!!!!!!\n",k);
     for(i=0; i<vecnum; i++)
         { visited[i] = FALSE; }
     visited[k] = TRUE;
     distance = 1;
-    Wides(p, visited, dis, k, distance);
+    Wides(p, visited, dis, k, distance, vecnum);
     }
 
 /*============ data have stored in **p graph part begin here =========*/
